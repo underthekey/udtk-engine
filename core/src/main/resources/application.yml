@@ -1,0 +1,13 @@
+user-details:
+  username: ${USER_NAME}
+  password: ${PASSWORD}
+  role: ${ROLE}
+
+spring:
+  profiles:
+    active: dev
+    include: local
+  application:
+    name: udtk
+  config:
+    import: optional:configserver:http://${USER_NAME}:${PASSWORD}@localhost:${CONFIG_SERVER_PORT}
