@@ -1,65 +1,65 @@
 plugins {
     id 'java'
     id 'checkstyle'
-    id 'org.springframework.boot' version '3.3.2'
-    id 'io.spring.dependency-management' version '1.1.6'
+    id 'org.springframework.boot' version '3.3.2' apply false
+    id 'io.spring.dependency-management' version '1.1.6' apply false
 }
 
-checkstyle {
-    maxWarnings = 0
-    configFile = file("${rootDir}/config/naver-checkstyle.xml")
-    configProperties = ["suppressionFile": "${rootDir}/config/naver-checkstyle-suppressions.xml"]
-    toolVersion = "8.44"
-}
+subprojects {
+    group = 'site.udtk.engine'
+    version = '0.0.1-SNAPSHOT'
+    sourceCompatibility = '17'
 
-compileJava.options.encoding = 'UTF-8'
-compileTestJava.options.encoding = 'UTF-8'
+    apply plugin: 'java'
+    apply plugin: 'checkstyle'
+    apply plugin: 'org.springframework.boot'
+    apply plugin: 'io.spring.dependency-management'
 
-group = 'site.udtk'
-version = '0.0.1-SNAPSHOT'
-
-java {
-    toolchain {
-        languageVersion = JavaLanguageVersion.of(17)
+    configurations {
+        compileOnly {
+            extendsFrom annotationProcessor
+        }
     }
-}
 
-configurations {
-    compileOnly {
-        extendsFrom annotationProcessor
+    checkstyle {
+        maxWarnings = 0
+        configFile = file("${rootDir}/config/naver-checkstyle-rules.xml")
+        configProperties = ["suppressionFile": "${rootDir}/config/naver-checkstyle-suppressions.xml"]
+        toolVersion = "8.44"
     }
-}
 
-repositories {
-    mavenCentral()
-}
-
-ext {
-    set('springCloudVersion', "2023.0.3")
-    set('springModulithVersion', "1.2.1")
-}
-
-dependencies {
-    implementation 'org.springframework.boot:spring-boot-starter-web'
-    implementation 'org.springframework.cloud:spring-cloud-starter-config'
-    implementation 'org.springframework.modulith:spring-modulith-starter-core'
-    implementation 'org.springframework.boot:spring-boot-starter-mustache'
-    implementation 'io.github.cdimascio:dotenv-java:3.0.0'
-    compileOnly 'org.projectlombok:lombok'
-//    developmentOnly 'org.springframework.boot:spring-boot-devtools'
-    annotationProcessor 'org.projectlombok:lombok'
-    testImplementation 'org.springframework.boot:spring-boot-starter-test'
-    testImplementation 'org.springframework.modulith:spring-modulith-starter-test'
-    testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
-}
-
-dependencyManagement {
-    imports {
-        mavenBom "org.springframework.cloud:spring-cloud-dependencies:${springCloudVersion}"
-        mavenBom "org.springframework.modulith:spring-modulith-bom:${springModulithVersion}"
+    repositories {
+        mavenCentral()
     }
+
+    ext {
+        set('springModulithVersion', "1.2.1")
+        set('springCloudVersion', "2023.0.3")
+    }
+
+    dependencies {
+        implementation 'org.springframework.boot:spring-boot-starter-web'
+        implementation 'org.springframework.modulith:spring-modulith-starter-core'
+        implementation 'org.springframework.cloud:spring-cloud-starter-config'
+        compileOnly 'org.projectlombok:lombok'
+        annotationProcessor 'org.projectlombok:lombok'
+        testImplementation 'org.springframework.boot:spring-boot-starter-test'
+        testImplementation 'org.springframework.modulith:spring-modulith-starter-test'
+        testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+    }
+
+    dependencyManagement {
+        imports {
+            mavenBom "org.springframework.modulith:spring-modulith-bom:${springModulithVersion}"
+            mavenBom "org.springframework.cloud:spring-cloud-dependencies:${springCloudVersion}"
+        }
+    }
+
+    tasks.named('test') {
+        useJUnitPlatform()
+    }
+
+    bootJar { enabled = false }
+//    jar { enabled = true }
 }
 
-tasks.named('test') {
-    useJUnitPlatform()
-}
