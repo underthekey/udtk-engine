@@ -2,7 +2,7 @@ server:
   port: ${EUREKA_SERVER_PORT}
 
 user-details:
-  username: ${EUREKA_SERVER_USER_NAME}
+  username: ${EUREKA_SERVER_USERNAME}
   password: ${EUREKA_SERVER_PASSWORD}
   role: ${EUREKA_SERVER_ROLE}
 
