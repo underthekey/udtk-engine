@@ -1,7 +1,7 @@
 user-details:
-  username: ${USER_NAME}
-  password: ${PASSWORD}
-  role: ${ROLE}
+  username: ${CONFIG_SERVER_USER_NAME}
+  password: ${CONFIG_SERVER_PASSWORD}
+  role: ${CONFIG_SERVER_USER_ROLE}
 
 spring:
   profiles:
@@ -10,4 +10,11 @@ spring:
   application:
     name: udtk-core
   config:
-    import: optional:configserver:http://${USER_NAME}:${PASSWORD}@localhost:${CONFIG_SERVER_PORT}
+    import: optional:configserver:http://${CONFIG_SERVER_USER_NAME}:${CONFIG_SERVER_PASSWORD}@localhost:${CONFIG_SERVER_PORT}
+
+eureka:
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    service-url:
+      defaultZone: http://${EUREKA_SERVER_USER_NAME}:${EUREKA_SERVER_PASSWORD}@localhost:${EUREKA_SERVER_PORT}/eureka/

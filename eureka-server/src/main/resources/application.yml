@@ -1,7 +1,15 @@
 server:
-  port: 8761
+  port: ${EUREKA_SERVER_PORT}
+
+user-details:
+  username: ${EUREKA_SERVER_USER_NAME}
+  password: ${EUREKA_SERVER_PASSWORD}
+  role: ${EUREKA_SERVER_ROLE}
 
 spring:
+  profiles:
+    active: dev
+    include: local
   application:
     name: udtk-eureka
 
