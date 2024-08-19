@@ -8,6 +8,6 @@ spring:
     active: dev
     include: local
   application:
-    name: udtk
+    name: udtk-core
   config:
     import: optional:configserver:http://${USER_NAME}:${PASSWORD}@localhost:${CONFIG_SERVER_PORT}
