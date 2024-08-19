@@ -22,7 +22,7 @@ public class SecurityConfig {
 	private final UserConfig userConfig;
 
 	@Bean
-	public BCryptPasswordEncoder bCryptPasswordEncoder() {
+	public BCryptPasswordEncoder bcryptPasswordEncoder() {
 		return new BCryptPasswordEncoder();
 	}
 
@@ -46,7 +46,7 @@ public class SecurityConfig {
 
 		UserDetails user1 = User.builder()
 			.username(userConfig.getUsername())
-			.password(bCryptPasswordEncoder().encode(userConfig.getPassword()))
+			.password(bcryptPasswordEncoder().encode(userConfig.getPassword()))
 			.roles(userConfig.getRole())
 			.build();
 
