@@ -1,8 +1,8 @@
 server:
-  port: 9000
+  port: ${CONFIG_SERVER_PORT}
 
 user-details:
-  username: ${USER_NAME}
+  username: ${USERNAME}
   password: ${PASSWORD}
   role: ${ROLE}
 
@@ -17,8 +17,15 @@ spring:
     config:
       server:
         git:
-          uri: ${CONFIG_URI}
-          username: ${CONFIG_USERNAME}
-          password: ${CONFIG_PASSWORD}
+          uri: ${CONFIG_REPOSITORY_URI}
+          username: ${CONFIG_GIT_USERNAME}
+          password: ${CONFIG_GIT_PASSWORD}
           ignore-local-ssh-settings: true
-          private-key: ${CONFIG_PRIVATE_KEY}
+          private-key: ${CONFIG_GIT_PRIVATE_KEY}
+
+eureka:
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    service-url:
+      defaultZone: http://${EUREKA_SERVER_USERNAME}:${EUREKA_SERVER_PASSWORD}@localhost:${EUREKA_SERVER_PORT}/eureka/
