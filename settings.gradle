@@ -1,2 +1,2 @@
 rootProject.name = 'udtk-engine'
-include 'core', 'config-server'
+include 'core', 'config-server', 'eureka-server'
