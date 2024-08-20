@@ -1,5 +1,4 @@
 dependencies {
+    implementation project(':global-security')
     implementation 'org.springframework.cloud:spring-cloud-config-server'
-    implementation 'org.springframework.boot:spring-boot-starter-security'
-    testImplementation 'org.springframework.security:spring-security-test'
 }

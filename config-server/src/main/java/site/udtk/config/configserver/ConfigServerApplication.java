@@ -2,15 +2,13 @@ package site.udtk.config.configserver;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 import org.springframework.cloud.config.server.EnableConfigServer;
 
-import site.udtk.config.configserver.config.UserConfig;
-
-@SpringBootApplication
+@SpringBootApplication(
+	scanBasePackages = "site.udtk.globalsecurity"
+)
 @EnableConfigServer
-@EnableConfigurationProperties(UserConfig.class)
 @EnableDiscoveryClient
 public class ConfigServerApplication {
 
