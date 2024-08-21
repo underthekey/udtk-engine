@@ -67,7 +67,7 @@ subprojects {
         }
     }
 
-    if (project.name != 'gateway-server') {
+    if (project.name != 'gateway-server' && project.name != 'global-security') {
         dependencies {
             implementation 'org.springframework.boot:spring-boot-starter-web'
         }
