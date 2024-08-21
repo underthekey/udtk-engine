@@ -12,8 +12,14 @@ spring:
     include: local
   application:
     name: udtk-eureka
+  security:
+    user:
+      name: ${USERNAME}
+      password: ${PASSWORD}
 
 eureka:
   client:
     register-with-eureka: false
     fetch-registry: false
+    service-url:
+      defaultZone: http://${USERNAME}:${PASSWORD}@localhost:${EUREKA_SERVER_PORT}/eureka/
