@@ -4,9 +4,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 
-@SpringBootApplication(
-	scanBasePackages = "site.udtk.globalsecurity"
-)
+@SpringBootApplication
 @EnableDiscoveryClient
 public class GatewayServerApplication {
 
