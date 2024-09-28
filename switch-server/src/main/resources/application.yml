@@ -1,0 +1,8 @@
+spring:
+  profiles:
+    active: dev
+    include: local
+  application:
+    name: switch-server
+  config:
+    import: optional:configserver:http://${CONFIG_SERVER_USERNAME}:${CONFIG_SERVER_PASSWORD}@localhost:${CONFIG_SERVER_PORT}
