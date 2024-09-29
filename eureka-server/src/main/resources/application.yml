@@ -2,24 +2,24 @@ server:
   port: ${EUREKA_SERVER_PORT}
 
 user-details:
-  username: ${USERNAME}
-  password: ${PASSWORD}
-  role: ${ROLE}
+  username: ${SECURITY_USERNAME}
+  password: ${SECURITY_PASSWORD}
+  role: ${SECURITY_ROLE}
 
 spring:
   profiles:
     active: dev
-    include: local
+  #    include: local
   application:
     name: udtk-eureka
   security:
     user:
-      name: ${USERNAME}
-      password: ${PASSWORD}
+      name: ${SECURITY_USERNAME}
+      password: ${SECURITY_PASSWORD}
 
 eureka:
   client:
     register-with-eureka: false
     fetch-registry: false
     service-url:
-      defaultZone: http://${USERNAME}:${PASSWORD}@localhost:${EUREKA_SERVER_PORT}/eureka/
+      defaultZone: http://${SECURITY_USERNAME}:${SECURITY_PASSWORD}@localhost:${EUREKA_SERVER_PORT}/eureka/

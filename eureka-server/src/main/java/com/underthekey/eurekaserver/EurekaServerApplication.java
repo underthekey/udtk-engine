@@ -5,7 +5,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.netflix.eureka.server.EnableEurekaServer;
 
 @SpringBootApplication(
-	scanBasePackages = "site.udtk.globalsecurity"
+	scanBasePackages = "com.underthekey.globalsecurity"
 )
 @EnableEurekaServer
 public class EurekaServerApplication {
