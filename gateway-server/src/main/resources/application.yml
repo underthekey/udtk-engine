@@ -12,9 +12,9 @@ eureka:
     register-with-eureka: true
     fetch-registry: true
     service-url:
-      defaultZone: http://${USERNAME}:${PASSWORD}@localhost:${EUREKA_SERVER_PORT}/eureka/
+      defaultZone: http://${EUREKA_SERVER_USERNAME}:${EUREKA_SERVER_PASSWORD}@localhost:${EUREKA_SERVER_PORT}/eureka/
 
 user-details:
-  username: ${USERNAME}
-  password: ${PASSWORD}
-  role: ${ROLE}
+  username: ${SECURITY_USERNAME}
+  password: ${SECURITY_PASSWORD}
+  role: ${SECURITY_ROLE}
