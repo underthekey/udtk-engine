@@ -2,7 +2,7 @@ spring:
   profiles:
     active: dev
   application:
-    name: gateway-server
+    name: udtk-switch
   config:
     import: optional:configserver:http://${SECURITY_USERNAME}:${SECURITY_PASSWORD}@localhost:${CONFIG_SERVER_PORT}
 
@@ -12,8 +12,3 @@ eureka:
     fetch-registry: true
     service-url:
       defaultZone: http://${SECURITY_USERNAME}:${SECURITY_PASSWORD}@localhost:${EUREKA_SERVER_PORT}/eureka/
-
-user-details:
-  username: ${SECURITY_USERNAME}
-  password: ${SECURITY_PASSWORD}
-  role: ${SECURITY_ROLE}

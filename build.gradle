@@ -1,3 +1,9 @@
+buildscript {
+    ext {
+        querydslVersion = "5.0.0"
+    }
+}
+
 plugins {
     id 'java'
     id 'org.springframework.boot' version '3.3.2' apply false
@@ -21,6 +27,8 @@ allprojects {
     apply plugin: 'io.spring.dependency-management'
 }
 
+allprojects {}
+
 subprojects {
     apply plugin: 'java'
     apply plugin: 'org.springframework.boot'
@@ -43,6 +51,7 @@ subprojects {
         compileOnly {
             extendsFrom annotationProcessor
         }
+        annotationProcessor
     }
 
     dependencyManagement {
@@ -56,9 +65,17 @@ subprojects {
         implementation 'org.springframework.modulith:spring-modulith-starter-core'
         compileOnly 'org.projectlombok:lombok'
         annotationProcessor 'org.projectlombok:lombok'
+        annotationProcessor 'org.springframework.boot:spring-boot-configuration-processor'
+        annotationProcessor 'jakarta.persistence:jakarta.persistence-api'
         testImplementation 'org.springframework.boot:spring-boot-starter-test'
         testImplementation 'org.springframework.modulith:spring-modulith-starter-test'
         testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+
+        tasks.withType(JavaCompile).tap {
+            configureEach {
+                options.generatedSourceOutputDirectory = file("$buildDir/generated/sources/annotationProcessor/java/main")
+            }
+        }
     }
 
     if (project.name != 'eureka-server') {
@@ -80,4 +97,10 @@ subprojects {
     bootJar { enabled = false }
 
     jar { enabled = true }
+
+    tasks.withType(JavaCompile).tap {
+        configureEach {
+            options.generatedSourceOutputDirectory = file("$buildDir/generated/sources/annotationProcessor/java/main")
+        }
+    }
 }

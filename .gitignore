@@ -10,6 +10,7 @@ application-local.yml
 application-dev.yml
 application-prod.yml
 .env
+key.pem
 
 ### STS ###
 .apt_generated
