@@ -14,15 +14,17 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 public class GlobalExceptionHandler {
 
 	@ExceptionHandler(BaseException.class)
-	public ResponseEntity<ErrorResponse> handleCustomException(BaseException e) {
-		return ResponseEntity.status(e.getErrorCode().getHttpStatus())
-			.body(new ErrorResponse(e.getErrorCode().getHttpStatus().value(), e.getErrorCode().getErrorMsg()));
+	public ResponseEntity<ErrorResponse> handleCustomException(BaseException exception) {
+		return ResponseEntity.status(exception.getErrorCode().getHttpStatus())
+			.body(new ErrorResponse(exception.getErrorCode().getHttpStatus().value(),
+				exception.getErrorCode().getErrorMsg()));
 	}
 
 	@ExceptionHandler(MethodArgumentNotValidException.class)
-	public ResponseEntity<ErrorResponse> handleMethodArgumentNotValidException(MethodArgumentNotValidException e) {
+	public ResponseEntity<ErrorResponse> handleMethodArgumentNotValidException(
+		MethodArgumentNotValidException exception) {
 		return ResponseEntity.status(HttpStatus.BAD_REQUEST)
 			.body(new ErrorResponse(METHOD_ARGUMENT_NOT_VALID.getHttpStatus().value(), Objects.requireNonNull(
-				e.getFieldError()).getDefaultMessage()));
+				exception.getFieldError()).getDefaultMessage()));
 	}
 }
