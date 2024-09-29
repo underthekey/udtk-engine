@@ -9,7 +9,7 @@ user-details:
 spring:
   profiles:
     active: dev
-    include: local
+  #    include: local
   application:
     name: udtk-eureka
   security:
@@ -22,4 +22,4 @@ eureka:
     register-with-eureka: false
     fetch-registry: false
     service-url:
-      defaultZone: http://${EUREKA_SERVER_USERNAME}:${EUREKA_SERVER_PASSWORD}@localhost:${EUREKA_SERVER_PORT}/eureka/
+      defaultZone: http://${SECURITY_USERNAME}:${SECURITY_PASSWORD}@localhost:${EUREKA_SERVER_PORT}/eureka/

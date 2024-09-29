@@ -1,18 +1,17 @@
 spring:
   profiles:
     active: dev
-    include: local
   application:
     name: gateway-server
   config:
-    import: optional:configserver:http://${CONFIG_SERVER_USERNAME}:${CONFIG_SERVER_PASSWORD}@localhost:${CONFIG_SERVER_PORT}
+    import: optional:configserver:http://${SECURITY_USERNAME}:${SECURITY_PASSWORD}@localhost:${CONFIG_SERVER_PORT}
 
 eureka:
   client:
     register-with-eureka: true
     fetch-registry: true
     service-url:
-      defaultZone: http://${EUREKA_SERVER_USERNAME}:${EUREKA_SERVER_PASSWORD}@localhost:${EUREKA_SERVER_PORT}/eureka/
+      defaultZone: http://${SECURITY_USERNAME}:${SECURITY_PASSWORD}@localhost:${EUREKA_SERVER_PORT}/eureka/
 
 user-details:
   username: ${SECURITY_USERNAME}
